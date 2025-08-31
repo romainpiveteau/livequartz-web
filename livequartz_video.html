@@ -1,0 +1,146 @@
+<?
+	$root = '../../../';
+	$lng = $_REQUEST['lng'];
+	$menu = $_REQUEST['menu'];
+	$param = (isset($_REQUEST['param']) ? $_REQUEST['param'] : 1);
+	$nombreVidéos = 3;
+	$localized = array(
+		
+		"T1" => array(
+			"en" => "Layers",
+			"fr" => "Calques",
+			"it" => "Livelli",
+		),
+		"T2" => array(
+			"en" => "Filters",
+			"fr" => "Filtres",
+			"it" => "Filtri",
+		),
+		"T3" => array(
+			"en" => "Retouching",
+			"fr" => "Retouche",
+			"it" => "Modifica",
+		),
+		"PosterMessage" => array(
+			"en" => "Click to Play",
+			"fr" => "Cliquez pour visionner",
+			"it" => "Fai clic per avviare la riproduzione",
+		),
+		"DownloadDocument" => array(
+			"en" => "Download LiveQuartz example files",
+			"fr" => "T&eacute;l&eacute;chargez des fichiers LiveQuartz d'exemple",
+			"it" => "Download LiveQuartz example files",
+		),
+	);
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+		<title>Rhapsoft</title>
+		<link rel="icon" href="<? echo $root; ?>favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="<? echo $root; ?>common/style.css" />
+		<script src="http://www.apple.com/library/quicktime/scripts/ac_quicktime.js" language="JavaScript" type="text/javascript"></script>
+		<script src="http://www.apple.com/library/quicktime/scripts/qtp_library.js" language="JavaScript" type="text/javascript"></script>
+		<link href="http://www.apple.com/library/quicktime/stylesheets/qtp_library.css" rel="StyleSheet" type="text/css" />
+
+	</head>
+	<body bgcolor="white">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td valign="top" class="text">
+					<h1>Videos of LiveQuartz</h1>
+
+					<div align="center">
+<iframe width="1920" height="1080" src="https://www.youtube.com/embed/Urc_hoIADWo" frameborder="0" allowfullscreen></iframe>
+<br/><br/>
+<iframe width="960" height="540" src="http://www.youtube.com/embed/QQtCVlhFSaU" frameborder="0" allowfullscreen></iframe>
+<br/><br/>
+<iframe width="960" height="540" src="http://www.youtube.com/embed/YsB1JQrNmJ0" frameborder="0" allowfullscreen></iframe>
+
+
+<br/><br/><br/>
+<h2>Old Videos</h2>
+
+						<table bgcolor="#666666">
+							<tr>
+								<td align="center"  background="<? echo $root; ?>/pictures/frame/title.png">
+									<table>
+										<tr>
+                                            <td><ul id="menu"><li id="' . ($param == $index ? "selected" : "unselected") . '"><a href="?param=' . $index . '&lng=' . $lng . '">' . $localized["T" . $index][$lng] . '</a></li></ul></td>
+                                            <td><ul id="menu"><li id="' . ($param == $index ? "selected" : "unselected") . '"><a href="?param=' . $index . '&lng=' . $lng . '">' . $localized["T" . $index][$lng] . '</a></li></ul></td>
+                                            <td><ul id="menu"><li id="' . ($param == $index ? "selected" : "unselected") . '"><a href="?param=' . $index . '&lng=' . $lng . '">' . $localized["T" . $index][$lng] . '</a></li></ul></td>
+<?
+	for ($index = 1; $index <= $nombreVidéos; $index++)
+		echo '
+											<td><ul id="menu"><li id="' . ($param == $index ? "selected" : "unselected") . '"><a href="?param=' . $index . '&lng=' . $lng . '">' . $localized["T" . $index][$lng] . '</a></li></ul></td>';
+?>
+										</tr>
+									</table>
+								</td>
+							<tr>
+								<td align="center">
+<?
+	if ($param == 1)
+	{
+		$href = "Layers/Layers.mov";
+		$poster = "Layers/Layers-poster.jpg";
+	}
+	elseif ($param == 2)
+	{
+		$href = "Filters/Filters.mov";
+		$poster = "Filters/Filters-poster.jpg";
+	}
+	elseif ($param == 3)
+	{
+		$href = "Tools/Tools.mov";
+		$poster = "Tools/Tools-poster.jpg";
+	}
+echo '
+
+<script type="text/javascript"><!--
+	QT_WritePoster_XHTML("'Click to Play'", "'.$poster.'",
+		"'.$href.'",
+		"807", "496", "",
+		"controller", "true",
+		"autoplay", "true",
+		"bgcolor", "black",
+		"scale", "aspect");
+//-->
+</script>
+<noscript>
+<object width="807" height="496" classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab">
+	<param name="src" value="'.$poster.'" />
+	<param name="href" value="'.$href.'" />
+	<param name="target" value="myself" />
+	<param name="controller" value="false" />
+	<param name="autoplay" value="false" />
+	<param name="scale" value="aspect" />
+	<embed width="807" height="496" type="video/quicktime" pluginspage="http://www.apple.com/quicktime/download/"
+		src="'.$poster.'"
+		href="'.$href.'"
+		target="myself"
+		controller="false"
+		autoplay="false"
+		scale="aspect">
+	</embed>
+</object>
+</noscript>';
+?>
+
+								</td>
+							</tr>
+						</tr>
+					</div>
+				</td>
+			</tr>
+		</table>
+<center>
+<table><tr><td>
+<a href="../download/ExampleFiles.zip"><img src="../pictures/LiveQuartzDocumentIcon.png" width="64" height="64" border="0" /></a>
+</td><td valign="center">
+<a href="../download/ExampleFiles.zip"><big><b>Download LiveQuartz example files </b></big></a>
+</td></tr></table>
+</center>
+	</body>
+</html>
